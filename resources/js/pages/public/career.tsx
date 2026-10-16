@@ -13,9 +13,9 @@ const careerCopy = {
 export default function Career({ locale, page, seo }: CareerProps) {
     const copy = careerCopy[locale];
     const imagery = [
-        { url: '/career/IMG_4033.webp', alt: 'Textile production team briefing', width: 1200, height: 900 },
-        { url: '/career/IMG_3869.webp', alt: 'Engineers collaborating on the production floor', width: 1200, height: 900 },
-        { url: '/career/IMG_3001.webp', alt: 'Quality specialist inspecting woven fabric', width: 1200, height: 900 },
+        { url: '/images/career/IMG_4033.webp', alt: 'Textile production team briefing', width: 1200, height: 900 },
+        { url: '/images/career/IMG_3869.webp', alt: 'Engineers collaborating on the production floor', width: 1200, height: 900 },
+        { url: '/images/career/IMG_3001.webp', alt: 'Quality specialist inspecting woven fabric', width: 1200, height: 900 },
     ];
 
     return (

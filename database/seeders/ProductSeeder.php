@@ -85,15 +85,15 @@ class ProductSeeder extends Seeder
     private function galleryFor(string $slug): array
     {
         return match ($slug) {
-            'spinning' => ['/products/1-spinning-4.webp', '/products/1-spinning-3.webp'],
-            'twisting' => ['/products/IMG_3588.webp', '/products/IMG_3589.webp'],
-            'knitting' => ['/products/3-knitting.webp', '/products/3-knitting-2.webp'],
-            'weaving' => ['/products/4-weaving-1.webp', '/products/4-weaving-2.webp'],
-            'dyeing' => ['/products/IMG_4017.webp', '/products/IMG_4022.webp'],
-            'yarn-dyeing' => ['/products/IMG_3726-yarn.webp', '/products/IMG_3733.webp'],
-            'garment' => ['/products/IMG_3025.webp', '/products/IMG_3028.webp'],
-            'printing' => ['/products/IMG_3063.webp', '/products/IMG_3065.webp'],
-            default => ['/products/IMG_3548.webp', '/products/IMG_3557.webp'],
+            'spinning' => ['/images/products/1-spinning-4.webp', '/images/products/1-spinning-3.webp'],
+            'twisting' => ['/images/products/IMG_3588.webp', '/images/products/IMG_3589.webp'],
+            'knitting' => ['/images/products/3-knitting.webp', '/images/products/3-knitting-2.webp'],
+            'weaving' => ['/images/products/4-weaving-1.webp', '/images/products/4-weaving-2.webp'],
+            'dyeing' => ['/images/products/IMG_4017.webp', '/images/products/IMG_4022.webp'],
+            'yarn-dyeing' => ['/images/products/IMG_3726-yarn.webp', '/images/products/IMG_3733.webp'],
+            'garment' => ['/images/products/IMG_3025.webp', '/images/products/IMG_3028.webp'],
+            'printing' => ['/images/products/IMG_3063.webp', '/images/products/IMG_3065.webp'],
+            default => ['/images/products/IMG_3548.webp', '/images/products/IMG_3557.webp'],
         };
     }
 }

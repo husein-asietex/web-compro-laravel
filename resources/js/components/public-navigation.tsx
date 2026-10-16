@@ -50,7 +50,7 @@ export function PublicNavigation({ locale }: { locale: Locale }) {
                 >
                     <span className="flex items-center gap-3">
                         <img
-                            src="/LOGOASIETEX.webp"
+                            src="/images/LOGOASIETEX.webp"
                             alt=""
                             width={40}
                             height={40}

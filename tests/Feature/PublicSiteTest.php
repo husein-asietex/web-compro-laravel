@@ -84,17 +84,17 @@ it('provides approved product photography with deterministic dimensions', functi
     $product = Product::factory()->published()->create(['slug' => 'photographed-product']);
     Translation::factory()->forProduct($product)->create(['locale' => 'en', 'title' => 'Photographed product']);
     MediaAsset::factory()->for($product)->approved()->create([
-        'url' => '/products/1-spinning.webp',
+        'url' => '/images/products/1-spinning.webp',
         'alt_en' => 'Spinning production at Asietex',
     ]);
 
     $this->get('/en/products/photographed-product')->assertOk()->assertInertia(fn (Assert $response) => $response
         ->component('public/products/show')
-        ->where('product.image.url', 'http://localhost:8000/products/1-spinning.webp')
+        ->where('product.image.url', 'http://localhost:8000/images/products/1-spinning.webp')
         ->where('product.image.alt', 'Spinning production at Asietex')
         ->where('product.image.width', 1600)
         ->where('product.image.height', 1200)
-        ->where('seo.structuredData.image', 'http://localhost:8000/products/1-spinning.webp'));
+        ->where('seo.structuredData.image', 'http://localhost:8000/images/products/1-spinning.webp'));
 });
 
 it('serves each approved public route and rejects invalid locales', function (): void {

@@ -74,15 +74,15 @@ const copy = {
 } as const;
 
 const productImages: Record<string, string> = {
-    spinning: '/products/1-spinning-4.webp',
-    twisting: '/products/IMG_3588.webp',
-    knitting: '/products/3-knitting.webp',
-    weaving: '/products/4-weaving-1.webp',
-    dyeing: '/products/IMG_4017.webp',
-    'yarn-dyeing': '/products/IMG_3726-yarn.webp',
-    garment: '/products/IMG_3025.webp',
-    printing: '/products/IMG_3063.webp',
-    finishing: '/products/IMG_3548.webp',
+    spinning: '/images/products/1-spinning-4.webp',
+    twisting: '/images/products/IMG_3588.webp',
+    knitting: '/images/products/3-knitting.webp',
+    weaving: '/images/products/4-weaving-1.webp',
+    dyeing: '/images/products/IMG_4017.webp',
+    'yarn-dyeing': '/images/products/IMG_3726-yarn.webp',
+    garment: '/images/products/IMG_3025.webp',
+    printing: '/images/products/IMG_3063.webp',
+    finishing: '/images/products/IMG_3548.webp',
 };
 
 export default function Home({ locale, page, products, catalog, seo }: Props) {
@@ -261,7 +261,7 @@ export default function Home({ locale, page, products, catalog, seo }: Props) {
                         </Link>
                     </div>
                     <img
-                        src="/why-asietex/IMG_2875.webp"
+                        src="/images/why-asietex/IMG_2875.webp"
                         alt=""
                         width={1600}
                         height={800}
@@ -317,7 +317,7 @@ export default function Home({ locale, page, products, catalog, seo }: Props) {
                         </p>
                     </div>
                     <img
-                        src="/request-samples/IMG_3723.webp"
+                        src="/images/request-samples/IMG_3723.webp"
                         alt=""
                         width={1200}
                         height={1600}

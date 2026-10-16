@@ -17,10 +17,10 @@ const contactCopy = {
 export default function Contact({ locale, page, seo }: ContactProps) {
     const copy = contactCopy[locale];
     const imagery = [
-        ['/contact/IMG_3983.webp', 'Textile consultation in the buyer meeting space'],
-        ['/about/IMG_3376.webp', 'Asietex textile manufacturing campus'],
-        ['/why-asietex/IMG_2875.webp', 'Integrated textile production floor'],
-        ['/career/IMG_3545.webp', 'Textile quality team inspecting fabric'],
+        ['/images/contact/IMG_3983.webp', 'Textile consultation in the buyer meeting space'],
+        ['/images/about/IMG_3376.webp', 'Asietex textile manufacturing campus'],
+        ['/images/why-asietex/IMG_2875.webp', 'Integrated textile production floor'],
+        ['/images/career/IMG_3545.webp', 'Textile quality team inspecting fabric'],
     ] as const;
 
     return (

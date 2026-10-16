@@ -15,19 +15,19 @@ class MediaAssetSeeder extends Seeder
     public function run(): void
     {
         $legacyUrls = [
-            '/home/IMG_3406-hero.JPG' => '/home/IMG_3406-hero.webp',
-            '/about/IMG_2836.JPG' => '/about/IMG_2836.webp',
-            '/career/IMG_3000.JPG' => '/career/IMG_3000.webp',
-            '/contact/IMG_3983.JPG' => '/contact/IMG_3983.webp',
-            '/products/1-spinning.JPG' => '/products/1-spinning.webp',
-            '/products/IMG_2893.JPG' => '/products/IMG_2893.webp',
-            '/products/3-knitting.JPG' => '/products/3-knitting.webp',
-            '/products/4-weaving-1.JPG' => '/products/4-weaving-1.webp',
-            '/products/IMG_3444.JPG' => '/products/IMG_3444.webp',
-            '/products/IMG_3726-yarn.JPG' => '/products/IMG_3726-yarn.webp',
-            '/products/IMG_4017.JPG' => '/products/IMG_4017.webp',
-            '/products/IMG_4025.JPG' => '/products/IMG_4025.webp',
-            '/products/IMG_4037.JPG' => '/products/IMG_4037.webp',
+            '/images/home/IMG_3406-hero.JPG' => '/images/home/IMG_3406-hero.webp',
+            '/images/about/IMG_2836.JPG' => '/images/about/IMG_2836.webp',
+            '/images/career/IMG_3000.JPG' => '/images/career/IMG_3000.webp',
+            '/images/contact/IMG_3983.JPG' => '/images/contact/IMG_3983.webp',
+            '/images/products/1-spinning.JPG' => '/images/products/1-spinning.webp',
+            '/images/products/IMG_2893.JPG' => '/images/products/IMG_2893.webp',
+            '/images/products/3-knitting.JPG' => '/images/products/3-knitting.webp',
+            '/images/products/4-weaving-1.JPG' => '/images/products/4-weaving-1.webp',
+            '/images/products/IMG_3444.JPG' => '/images/products/IMG_3444.webp',
+            '/images/products/IMG_3726-yarn.JPG' => '/images/products/IMG_3726-yarn.webp',
+            '/images/products/IMG_4017.JPG' => '/images/products/IMG_4017.webp',
+            '/images/products/IMG_4025.JPG' => '/images/products/IMG_4025.webp',
+            '/images/products/IMG_4037.JPG' => '/images/products/IMG_4037.webp',
         ];
 
         foreach ($legacyUrls as $legacyUrl => $webpUrl) {
@@ -39,10 +39,10 @@ class MediaAssetSeeder extends Seeder
         }
 
         $pageMedia = [
-            'home' => ['/home/IMG_3406-hero.webp', 'Asietex integrated textile manufacturing facility'],
-            'about' => ['/about/IMG_2836.webp', 'Asietex factory and production environment'],
-            'career' => ['/career/IMG_3000.webp', 'Asietex production team at work'],
-            'contact' => ['/contact/IMG_3983.webp', 'Asietex company location'],
+            'home' => ['/images/home/IMG_3406-hero.webp', 'Asietex integrated textile manufacturing facility'],
+            'about' => ['/images/about/IMG_2836.webp', 'Asietex factory and production environment'],
+            'career' => ['/images/career/IMG_3000.webp', 'Asietex production team at work'],
+            'contact' => ['/images/contact/IMG_3983.webp', 'Asietex company location'],
         ];
 
         foreach ($pageMedia as $slug => [$url, $alt]) {
@@ -51,15 +51,15 @@ class MediaAssetSeeder extends Seeder
         }
 
         $productMedia = [
-            'spinning' => ['/products/1-spinning.webp', 'Spinning production at Asietex'],
-            'twisting' => ['/products/IMG_2893.webp', 'Yarn twisting production at Asietex'],
-            'knitting' => ['/products/3-knitting.webp', 'Knitting production at Asietex'],
-            'weaving' => ['/products/4-weaving-1.webp', 'Weaving production at Asietex'],
-            'dyeing' => ['/products/IMG_3444.webp', 'Textile dyeing production at Asietex'],
-            'yarn-dyeing' => ['/products/IMG_3726-yarn.webp', 'Yarn dyeing production at Asietex'],
-            'garment' => ['/products/IMG_4017.webp', 'Garment production at Asietex'],
-            'printing' => ['/products/IMG_4025.webp', 'Textile printing production at Asietex'],
-            'finishing' => ['/products/IMG_4037.webp', 'Textile finishing production at Asietex'],
+            'spinning' => ['/images/products/1-spinning.webp', 'Spinning production at Asietex'],
+            'twisting' => ['/images/products/IMG_2893.webp', 'Yarn twisting production at Asietex'],
+            'knitting' => ['/images/products/3-knitting.webp', 'Knitting production at Asietex'],
+            'weaving' => ['/images/products/4-weaving-1.webp', 'Weaving production at Asietex'],
+            'dyeing' => ['/images/products/IMG_3444.webp', 'Textile dyeing production at Asietex'],
+            'yarn-dyeing' => ['/images/products/IMG_3726-yarn.webp', 'Yarn dyeing production at Asietex'],
+            'garment' => ['/images/products/IMG_4017.webp', 'Garment production at Asietex'],
+            'printing' => ['/images/products/IMG_4025.webp', 'Textile printing production at Asietex'],
+            'finishing' => ['/images/products/IMG_4037.webp', 'Textile finishing production at Asietex'],
         ];
 
         foreach ($productMedia as $slug => [$url, $alt]) {

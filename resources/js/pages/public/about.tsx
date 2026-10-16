@@ -439,7 +439,7 @@ export default function About({ locale, page, seo }: AboutProps) {
                 <section className="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-24">
                     <div className="relative min-h-112 overflow-hidden rounded-[1.25rem] bg-primary text-primary-foreground md:min-h-90">
                         <img
-                            src="/about/IMG_3426.webp"
+                            src="/images/about/IMG_3426.webp"
                             alt=""
                             width={1600}
                             height={1000}
@@ -540,7 +540,7 @@ export default function About({ locale, page, seo }: AboutProps) {
                     title={content.factoriesTitle}
                     label={content.factoriesLabel}
                     entries={content.factories}
-                    image="/about/IMG_3376.webp"
+                    image="/images/about/IMG_3376.webp"
                 />
 
                 <AboutDetails
