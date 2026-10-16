@@ -16,9 +16,6 @@ use Inertia\Response;
 
 class PageController extends Controller
 {
-    /** @var list<string> */
-    private const PAGE_SLUGS = ['home', 'about', 'career', 'contact'];
-
     public function home(string $locale, PublicSeo $seo): Response
     {
         $page = $this->pageForLocale('home', $locale);
@@ -42,23 +39,30 @@ class PageController extends Controller
         ]);
     }
 
-    public function show(string $locale, string $slug, PublicSeo $seo): Response
+    public function about(string $locale, PublicSeo $seo): Response
     {
-        abort_unless(in_array($slug, self::PAGE_SLUGS, true) && $slug !== 'home', 404);
+        return $this->renderPage($locale, 'about', $seo, 'public/about');
+    }
 
+    public function career(string $locale, PublicSeo $seo): Response
+    {
+        return $this->renderPage($locale, 'career', $seo, 'public/career');
+    }
+
+    public function contact(string $locale, PublicSeo $seo): Response
+    {
+        return $this->renderPage($locale, 'contact', $seo, 'public/contact');
+    }
+
+    private function renderPage(string $locale, string $slug, PublicSeo $seo, string $component): Response
+    {
         $page = $this->pageForLocale($slug, $locale);
-        $collectionKey = match ($slug) {
-            'about' => 'about-company',
-            'career' => 'career-openings',
-            default => null,
-        };
 
         $payload = $this->pagePayload($page, $locale);
 
-        return Inertia::render('public/page', [
+        return Inertia::render($component, [
             'locale' => $locale,
             'page' => $payload,
-            'collection' => $collectionKey === null ? null : ContentCollection::query()->published()->find($collectionKey)?->data,
             'catalog' => $this->catalogPayload($locale, $slug),
             'seo' => $seo->page($locale, "public.{$slug}", $payload['title'], $payload['body']),
         ]);
@@ -67,11 +71,26 @@ class PageController extends Controller
     public function marketingContacts(string $locale, PublicSeo $seo): Response
     {
         $collection = ContentCollection::query()->published()->find('marketing-contacts');
+        $data = $collection === null ? [] : $collection->data;
+        $contacts = $data[$locale] ?? $data['en'] ?? $data['items'] ?? [];
 
         return Inertia::render('public/marketing-contacts', [
             'locale' => $locale,
-            'contacts' => $collection === null ? [] : ($collection->data['items'] ?? []),
-            'seo' => $seo->page($locale, 'public.marketing-contact', 'Marketing contacts', 'Speak with the Asietex marketing team.'),
+            'contacts' => is_array($contacts) ? $contacts : [],
+            'seo' => $seo->page(
+                $locale,
+                'public.marketing-contact',
+                match ($locale) {
+                    'id' => 'Kontak marketing',
+                    'pt' => 'Contactos de marketing',
+                    default => 'Marketing contacts',
+                },
+                match ($locale) {
+                    'id' => 'Hubungi tim marketing Asietex yang tepat untuk kebutuhan Anda.',
+                    'pt' => 'Fale com a equipa de marketing da Asietex adequada ao seu pedido.',
+                    default => 'Speak with the Asietex marketing team closest to your brief.',
+                },
+            ),
         ]);
     }
 

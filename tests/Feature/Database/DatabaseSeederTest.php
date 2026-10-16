@@ -27,7 +27,7 @@ it('creates the complete deterministic dummy dataset idempotently', function () 
     expect($admin->role)->toBe(Role::Admin)
         ->and($admin->active)->toBeTrue()
         ->and(Hash::check('password', $admin->password))->toBeTrue()
-        ->and($spinning->gallery)->toBe(['/products/1-spinning.JPG'])
+        ->and($spinning->gallery)->toBe(['/products/1-spinning.webp'])
         ->and($spinningMedia->approved)->toBeTrue()
         ->and(public_path(ltrim($spinningMedia->url, '/')))->toBeFile();
 });

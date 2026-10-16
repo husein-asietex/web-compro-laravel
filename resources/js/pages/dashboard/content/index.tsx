@@ -4,6 +4,7 @@ import { edit as editCollection } from '@/actions/App/Http/Controllers/Dashboard
 import { edit as editPage } from '@/actions/App/Http/Controllers/Dashboard/PageController';
 import { edit as editProduct } from '@/actions/App/Http/Controllers/Dashboard/ProductController';
 import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import {
     Card,
     CardContent,
@@ -45,8 +46,7 @@ function StatusBadge({ status }: { status: ContentStatus }) {
     );
 }
 
-const editLinkClass =
-    'inline-flex h-7 items-center rounded-md px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring';
+const editLinkClass = buttonVariants({ variant: 'ghost', size: 'sm' });
 
 export default function ContentLibrary({
     pages,

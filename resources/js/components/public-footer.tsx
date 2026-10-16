@@ -4,10 +4,15 @@ import type { Locale } from '@/types';
 
 export function PublicFooter({ locale }: { locale: Locale }) {
     const footerLinks = [
+        { href: publicRoutes.home(locale), label: 'Home' },
         { href: publicRoutes.about(locale), label: 'About' },
         { href: publicRoutes.products.index(locale), label: 'Products' },
-        { href: publicRoutes.career(locale), label: 'Career' },
         { href: publicRoutes.contact(locale), label: 'Contact' },
+        { href: publicRoutes.career(locale), label: 'Career' },
+        {
+            href: publicRoutes.marketingContact(locale),
+            label: 'Marketing contacts',
+        },
     ];
 
     return (

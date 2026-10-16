@@ -14,7 +14,7 @@ type PageData = {
 };
 const locales = ['en', 'id', 'pt'] as const;
 
-export default function PageEditor({ page }: { page: PageData }) {
+export function PageEditor({ page }: { page: PageData }) {
     const auth = usePage<{ auth: { user: { role: string } } }>().props.auth;
     const value = (locale: string) =>
         page.draft?.[locale] ??
@@ -101,3 +101,5 @@ export default function PageEditor({ page }: { page: PageData }) {
         </EditorShell>
     );
 }
+
+export default PageEditor;

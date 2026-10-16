@@ -14,7 +14,7 @@ class PageController extends Controller
 {
     public function edit(Page $page): Response
     {
-        return Inertia::render('dashboard/content/page-editor', ['page' => $page->load('translations')]);
+        return Inertia::render($this->editorComponent($page), ['page' => $page->load('translations')]);
     }
 
     public function update(UpdatePageDraftRequest $request, Page $page, ContentWorkflow $workflow): RedirectResponse
@@ -22,5 +22,15 @@ class PageController extends Controller
         $workflow->saveDraft($page, $request->validated('translations'), $request->user(), 'page');
 
         return back()->with('success', 'Page draft saved.');
+    }
+
+    private function editorComponent(Page $page): string
+    {
+        return match ($page->slug) {
+            'about' => 'dashboard/content/about-editor',
+            'career' => 'dashboard/content/career-editor',
+            'contact' => 'dashboard/content/contact-editor',
+            default => 'dashboard/content/page-editor',
+        };
     }
 }

@@ -65,11 +65,11 @@ it('accepts seeded root-relative product gallery paths and rejects unsafe scheme
     $product = Product::factory()->create();
 
     $this->actingAs($staff)
-        ->put(route('dashboard.products.update', $product), completeProductDraft(['/products/1-spinning.JPG']))
+        ->put(route('dashboard.products.update', $product), completeProductDraft(['/products/1-spinning.webp']))
         ->assertRedirect()
         ->assertSessionHasNoErrors();
 
-    expect($product->refresh()->draft['gallery'])->toBe(['/products/1-spinning.JPG']);
+    expect($product->refresh()->draft['gallery'])->toBe(['/products/1-spinning.webp']);
 
     $this->actingAs($staff)
         ->from(route('dashboard.products.edit', $product))
@@ -77,7 +77,7 @@ it('accepts seeded root-relative product gallery paths and rejects unsafe scheme
         ->assertRedirect(route('dashboard.products.edit', $product))
         ->assertSessionHasErrors('gallery.0');
 
-    expect($product->refresh()->draft['gallery'])->toBe(['/products/1-spinning.JPG']);
+    expect($product->refresh()->draft['gallery'])->toBe(['/products/1-spinning.webp']);
 });
 
 it('produces a relationally complete and publicly usable seeded dataset', function (): void {

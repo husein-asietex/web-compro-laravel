@@ -1,3 +1,5 @@
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Globe02Icon } from '@hugeicons/core-free-icons';
 import { Link, usePage } from '@inertiajs/react';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
@@ -7,8 +9,11 @@ import type { Locale } from '@/types';
 
 export function PublicNavigation({ locale }: { locale: Locale }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { url } = usePage();
+    const page = usePage();
+    const { auth } = page.props;
+    const { url } = page;
     const publicLinks = [
+        { href: publicRoutes.home(locale), label: 'Home' },
         { href: publicRoutes.about(locale), label: 'About' },
         { href: publicRoutes.products.index(locale), label: 'Products' },
         { href: publicRoutes.contact(locale), label: 'Contact' },
@@ -45,7 +50,7 @@ export function PublicNavigation({ locale }: { locale: Locale }) {
                 >
                     <span className="flex items-center gap-3">
                         <img
-                            src="/LOGOASIETEX.png"
+                            src="/LOGOASIETEX.webp"
                             alt=""
                             width={40}
                             height={40}
@@ -66,22 +71,34 @@ export function PublicNavigation({ locale }: { locale: Locale }) {
                             {link.label}
                         </Link>
                     ))}
-                    <span className="h-6 w-px bg-border" aria-hidden="true" />
-                    <Link
-                        href={dashboard()}
-                        className="hover:text-text-accent underline-offset-4 transition-colors hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-                    >
-                        CMS
-                    </Link>
+                    {auth.user && (
+                        <>
+                            <span className="h-6 w-px bg-border" aria-hidden="true" />
+                            <Link
+                                href={dashboard()}
+                                className="hover:text-text-accent underline-offset-4 transition-colors hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                            >
+                                Dashboard
+                            </Link>
+                        </>
+                    )}
                     <div
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-2 border-l border-border pl-3"
                         aria-label="Language"
                     >
+                        <HugeiconsIcon
+                            icon={Globe02Icon}
+                            size={14}
+                            strokeWidth={1.8}
+                            aria-hidden="true"
+                            className="text-muted-foreground"
+                        />
+
                         {(['en', 'id', 'pt'] as const).map((targetLocale) => (
                             <Link
                                 key={targetLocale}
                                 href={localizedUrl(targetLocale)}
-                                className={`rounded-full px-2.5 py-1.5 font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring ${locale === targetLocale ? 'text-text-accent bg-secondary' : 'hover:bg-secondary'}`}
+                                className={`rounded-sm px-2.5 py-1.5 font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring ${locale === targetLocale ? 'text-text-accent bg-secondary' : 'hover:bg-secondary'}`}
                                 aria-current={
                                     locale === targetLocale ? 'page' : undefined
                                 }
@@ -124,13 +141,15 @@ export function PublicNavigation({ locale }: { locale: Locale }) {
                                 {link.label}
                             </Link>
                         ))}
-                        <Link
-                            href={dashboard()}
-                            className="mt-2 rounded-md px-3 py-3 text-sm font-semibold hover:bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            Open CMS
-                        </Link>
+                        {auth.user && (
+                            <Link
+                                href={dashboard()}
+                                className="mt-2 rounded-md px-3 py-3 text-sm font-semibold hover:bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                Dashboard
+                            </Link>
+                        )}
                         <div
                             className="mt-2 flex gap-2 border-t border-border pt-4"
                             aria-label="Language"

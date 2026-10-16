@@ -9,8 +9,8 @@ bukan CI/CD, pipeline deployment, atau instruksi cutover production.
   Tokenizer, XML, Ctype, JSON, Fileinfo, dan BCMath.
 - Composer 2, Node.js 22.12 atau lebih baru, dan npm untuk membuat aset sekali
   sebelum upload.
-- Akses cPanel File Manager atau SFTP, terminal PHP/Composer jika tersedia,
-  dan database MySQL/MariaDB staging yang terpisah.
+- Akses cPanel File Manager atau FTP dan database MySQL/MariaDB staging yang
+  terpisah.
 
 ## Membuat artifact
 
@@ -67,12 +67,29 @@ INERTIA_SSR_ENABLED=false
 Gunakan kredensial baru untuk akun admin dan staff staging. Password legacy dan
 session aplikasi Next.js tidak dipindahkan.
 
-## Perintah server setelah upload
+## Langkah setelah upload tanpa Terminal cPanel
 
-Jalankan dari folder aplikasi staging setelah `.env` tersedia:
+Jika cPanel tidak menyediakan Terminal atau Composer, lakukan langkah berikut
+melalui File Manager, FTP, dan phpMyAdmin:
+
+1. Extract ZIP di folder aplikasi staging.
+2. Buat database dan user MySQL/MariaDB staging baru dari menu Databases.
+3. Buat `.env` di root aplikasi melalui File Manager dan isi sesuai contoh di
+   bagian konfigurasi.
+4. Import schema dan seed melalui mekanisme database yang disediakan pemilik
+   hosting. File migration Laravel tidak dapat dieksekusi langsung oleh
+   phpMyAdmin; minta dukungan hosting untuk menjalankan `php artisan migrate
+   --force` dan `php artisan db:seed --force`, atau gunakan akses Composer/SSH
+   sementara yang disediakan hosting.
+5. Pastikan permission `storage/` dan `bootstrap/cache/` writable oleh PHP.
+6. Buat symbolic link `public/storage` jika hosting menyediakan fitur symlink.
+   Aplikasi saat ini menggunakan media URL sehingga fitur ini tidak diperlukan
+   untuk konten seed.
+
+Perintah berikut adalah referensi untuk provider yang menyediakan eksekusi PHP;
+perintah tersebut tidak dapat dijalankan dari phpMyAdmin:
 
 ```text
-php artisan key:generate --force
 php artisan migrate --force
 php artisan db:seed --force
 php artisan storage:link
@@ -83,7 +100,18 @@ Jalankan `db:seed` hanya pada database staging baru karena seed menggantikan
 data dummy. Jangan menjalankannya pada production atau database yang berisi
 konten yang harus dipertahankan.
 
-## Smoke test staging
+## Verifikasi artifact lokal
+
+Dengan keputusan tidak melakukan testing staging, verifikasi yang dilakukan
+hanya pada artifact lokal:
+
+- `vendor/autoload.php` tersedia dan berisi dependency production;
+- `public/build/manifest.json` tersedia;
+- `.env`, `.git`, `node_modules`, `.migration`, tests, metadata agent, dan
+  `bootstrap/ssr` tidak ada di ZIP;
+- `php artisan about` dapat boot dengan environment production dan debug off.
+
+## Smoke test staging (opsional)
 
 Verifikasi melalui domain staging (bukan localhost):
 

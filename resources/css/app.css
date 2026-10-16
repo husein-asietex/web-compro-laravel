@@ -16,7 +16,7 @@
 }
 
 @theme inline {
-    --font-heading: Georgia, 'Times New Roman', serif;
+    --font-heading: 'Source Serif 4', Georgia, 'Times New Roman', serif;
     --font-sans: 'Geist Variable', sans-serif;
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);

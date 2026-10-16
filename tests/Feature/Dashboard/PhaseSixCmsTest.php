@@ -10,6 +10,7 @@ use App\Models\Revision;
 use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Testing\AssertableInertia as Assert;
 
 function translationsDraft(): array
 {
@@ -47,6 +48,19 @@ test('publish rejects an incomplete page draft without changing published data',
     expect($page->refresh()->status)->toBe(ContentStatus::Draft)
         ->and($page->draft)->not->toBeNull();
     $this->assertDatabaseMissing('revisions', ['entity' => 'page', 'action' => 'published']);
+});
+
+test('uses a dedicated CMS editor entry for each public menu page', function () {
+    $admin = User::factory()->admin()->create();
+
+    foreach (['about', 'career', 'contact'] as $slug) {
+        $page = Page::factory()->create(['slug' => $slug]);
+
+        $this->actingAs($admin)
+            ->get(route('dashboard.pages.edit', $page))
+            ->assertOk()
+            ->assertInertia(fn (Assert $response) => $response->component("dashboard/content/{$slug}-editor"));
+    }
 });
 
 test('product collection and settings publish workflows enforce admin role', function () {

@@ -28,12 +28,12 @@ Route::prefix('{locale}')
     ->whereIn('locale', ['en', 'id', 'pt'])
     ->group(function (): void {
         Route::get('/', [PageController::class, 'home'])->name('public.home');
-        Route::get('/about', [PageController::class, 'show'])->defaults('slug', 'about')->name('public.about');
+        Route::get('/about', [PageController::class, 'about'])->name('public.about');
         Route::get('/products', [ProductController::class, 'index'])->name('public.products.index');
         Route::get('/products/{product}', [ProductController::class, 'show'])->name('public.products.show');
         Route::get('/marketing-contact', [PageController::class, 'marketingContacts'])->name('public.marketing-contact');
-        Route::get('/career', [PageController::class, 'show'])->defaults('slug', 'career')->name('public.career');
-        Route::get('/contact', [PageController::class, 'show'])->defaults('slug', 'contact')->name('public.contact');
+        Route::get('/career', [PageController::class, 'career'])->name('public.career');
+        Route::get('/contact', [PageController::class, 'contact'])->name('public.contact');
     });
 
 Route::get('/login', LoginController::class)->middleware('guest')->name('login');
